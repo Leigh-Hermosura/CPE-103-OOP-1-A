@@ -1,6 +1,8 @@
 import pygame.sprite
 from settings import *
 from player import Player
+from sprites import *
+from random import randint
 
 class Game():
     def __init__(self):
@@ -9,9 +11,18 @@ class Game():
         pygame.display.set_caption('OOP Survival game')
         self.clock = pygame.time.Clock()
         self.running = True
-        self.allSprites = pygame.sprite.Group()
 
-        self.player = Player((400, 300), self.allSprites)
+        # groups
+        self.allSprites = pygame.sprite.Group()
+        self.collisionSprites = pygame.sprite.Group()
+
+        # sprites
+        self.player = Player((400, 300), self.allSprites, self.collisionSprites)
+        for i in range(6):
+            x, y = randint(0, WINwid), randint(0, WINhei)
+            w, h = randint(60, 100), randint(50, 100)
+            CollisionSprite((x, y), (w, h), (self.allSprites, self.collisionSprites))
+
 
     def run(self):
         while self.running:
