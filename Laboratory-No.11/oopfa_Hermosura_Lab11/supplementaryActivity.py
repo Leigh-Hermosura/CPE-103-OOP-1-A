@@ -1,13 +1,6 @@
 from tkinter import *
 import math
 
-# notes for calculator:
-# trigonometric equations should always end with ")" to work properly, else "Error"
-# example: sin(30), cos(60), and so on.
-
-# same goes for the square root function
-# example: √25), √9), and so on.
-
 def updateDisp(value):
     global expression
     expression += str(value)
@@ -52,7 +45,7 @@ def evalExp():
         display.insert(0, "Error")
         expression = ""
 
-
+# general setup
 root = Tk()
 root.title('Calculator')
 root.geometry('500x700')
@@ -106,7 +99,6 @@ btn3 = Button(frame, text="3", font=("Arial", 30, 'bold'), command=lambda: updat
 btn3.grid(column=2, row=4, sticky='nsew', pady=5)
 btnMinus = Button(frame, text="-", font=("Arial", 30, 'bold'), command=lambda: updateDisp("-"))
 btnMinus.grid(column=3, row=4, sticky='nsew', pady=5)
-
 
 # button row 5
 btn0 = Button(row5Frame, text="0", font=("Arial", 30, 'bold'), command=lambda: updateDisp("0"))
