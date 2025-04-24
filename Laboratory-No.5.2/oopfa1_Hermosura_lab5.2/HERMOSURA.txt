@@ -1,0 +1,40 @@
+1. Opening files – the first part is an error message, indicating that the file “stuff.txt” is nonexistent
+and couldn’t be found in the current directory which makes it inaccessible. The second part is the file handle
+of the file “mbox.txt” which can be divided into four parts. First, it displays that the object is a wrapper
+for handling text file. Second is the file’s name. Third is the mode it’s opened, in this case, ‘r’ stands for
+“read-only” mode. And lastly, the character encoding of the file which uses cp1252 which is used mainly in Western
+European languages.
+
+2. Text files and lines – in this output, it is shown how to create new lines in python by using “\n”. It
+divides characters into a separate line where the “\n” is called. It is also equivalent to a single character.
+
+3. Reading files – we can observe five outputs in this program. First is the line counter, the file
+“mbox-short.txt” is opened by using the “open()” function and a for loop that reads and updates the counter
+based on the amount of lines in the file. Second is reading the file and counting the length or the number of
+characters inside by using the “len()” function. The third is displaying the first 20 characters inside the
+file. The fourth output is the same as the second one, although directly printing the function and without
+assigning a variable. The fifth input shows the importance of assigning the read value inside a variable as
+every read exhausts the source which displays 0 on the second read.
+
+4. Searching through a file – the code is divided in four parts. First is running a for loop to read the
+file’s lines and we pass an if statement that checks each line that the loop reads if it starts with ‘From: ‘
+and displays the whole line. Second is the same program but the function “.rstrip()” is added before the for
+loop. This function removes white spaces like new lines, tabs and spaces in between lines which makes the
+output more compact. Third is a different approach yet has the same functionality as the second output where
+if the line does not start with ‘From: ‘ continue to the next iteration and display the line. Fourth is a block
+of code that reads the file and finds if there are lines that have the characters ‘@uct.ac.za’ and skips to the
+next iteration of it’s not found.
+
+5. Letting the user choose the file name – the code uses the “input()” function so that the user can choose the
+file to be opened by entering its name. It runs the same for loop that reads how many lines there is in the file.
+Under the for loop is and if statement that checks if the line starts with ‘Subject: ‘, counts the lines where it
+appears and displays it. The second output shows an error when the user inputs a non-existing file.
+
+6. Using try, except, and open – this code is similar to the last code except it handles the “file not found”
+problem much better rather than just crashing it. It uses the same code but passes a try and except function
+before the for loop. The try function tries to open the file which the user inputs and the except function displays
+‘File cannot be opened’ when the user inputs a non-existent file and terminates the program.
+
+7. Writing files – the code opens the text file “output.txt” and sets the mode on how the file is opened, in
+this case, ‘w’ which means it in writing mode. We store the lines we wish to write into variables and call the
+“.write()” method to write the lines into the file. The function “.close()” is crucial to save the file’s input.
