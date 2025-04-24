@@ -3,6 +3,8 @@ from settings import *
 from player import Player
 from sprites import *
 from random import randint
+from pytmx.util_pygame import load_pygame
+from groups import AllSprites
 
 class Game():
     def __init__(self):
@@ -13,16 +15,30 @@ class Game():
         self.running = True
 
         # groups
-        self.allSprites = pygame.sprite.Group()
+        self.allSprites = AllSprites()
         self.collisionSprites = pygame.sprite.Group()
 
-        # sprites
-        self.player = Player((400, 300), self.allSprites, self.collisionSprites)
-        for i in range(6):
-            x, y = randint(0, WINwid), randint(0, WINhei)
-            w, h = randint(60, 100), randint(50, 100)
-            CollisionSprite((x, y), (w, h), (self.allSprites, self.collisionSprites))
+        self.setup()
 
+        # sprites
+
+    def setup(self):
+        map = load_pygame(join('C:\\Users\\User\\PycharmProjects\\5 games\\Survival game\\data\\maps\\world.tmx'))
+        for x,y, image in map.get_layer_by_name('Ground').tiles():
+            Sprite((x * TILEsize,y * TILEsize), image, self.allSprites)
+
+        for coll in map.get_layer_by_name('Collisions'):
+            CollisionSprite((coll.x, coll.y), pygame.Surface((coll.width, coll.height)), self.collisionSprites)
+
+        for obj in map.get_layer_by_name('Objects'):
+            CollisionSprite((obj.x, obj.y), obj.image, (self.allSprites, self.collisionSprites))
+            print(obj.x)
+            print(obj.y)
+            print(obj.image)
+
+        for mark in map.get_layer_by_name('Entities'):
+            if mark.name == 'Player':
+                self.player = Player((mark.x, mark.y), self.allSprites, self.collisionSprites)
 
     def run(self):
         while self.running:
@@ -38,7 +54,7 @@ class Game():
 
             # draw
             self.dispSurf.fill('black')
-            self.allSprites.draw(self.dispSurf)
+            self.allSprites.draw(self.player.rect.center)
 
             pygame.display.update()
 
