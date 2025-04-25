@@ -1,0 +1,6 @@
+greeting = 'Hello, world!'
+new_greeting = 'J' + greeting[1:]
+print(new_greeting)
+
+greeting = 'Hello, world!'
+greeting[0] = 'J'
